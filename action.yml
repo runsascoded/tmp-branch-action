@@ -1,5 +1,8 @@
 name: "tmp-branch-action"
 description: "GitHub action that creates a branch (remotely, on a Github repository), then deletes it in a \"post\" step."
+branding:
+    color: "orange"
+    icon: "git-branch"
 inputs:
   branch:
     description: "Branch name to create"
