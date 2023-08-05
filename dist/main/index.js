@@ -4014,14 +4014,6 @@ module.exports = require("path");
 
 /***/ }),
 
-/***/ 282:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("process");
-
-/***/ }),
-
 /***/ 576:
 /***/ ((module) => {
 
@@ -4087,29 +4079,47 @@ module.exports = require("util");
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__nccwpck_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/compat */
 /******/ 	
 /******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
-const core = __nccwpck_require__(186);
-const {env} = __nccwpck_require__(282);
-(async () => {
-    const core = __nccwpck_require__(186);
-    const exec = __nccwpck_require__(514);
+"use strict";
+// ESM COMPAT FLAG
+__nccwpck_require__.r(__webpack_exports__);
 
-    const branch = core.getInput("branch");
-    const repository = core.getInput("repository") || env.GITHUB_REPOSITORY;
-    const sha = core.getInput("sha") || env.GITHUB_SHA;
+;// CONCATENATED MODULE: external "process"
+const external_process_namespaceObject = require("process");
+;// CONCATENATED MODULE: ./main.js
+
+
+(async () => {
+    const core = __nccwpck_require__(186)
+    const exec = __nccwpck_require__(514)
+
+    const branch = core.getInput("branch")
+    const repository = core.getInput("repository") || external_process_namespaceObject.env.GITHUB_REPOSITORY
+    const sha = core.getInput("sha") || external_process_namespaceObject.env.GITHUB_SHA
 
     if (!repository) {
-        core.setFailed("`repository` input not specified, $GITHUB_REPOSITORY not set");
+        core.setFailed("`repository` input not specified, $GITHUB_REPOSITORY not set")
     }
     if (!sha) {
-        core.setFailed("`sha` input not specified, $GITHUB_SHA not set");
+        core.setFailed("`sha` input not specified, $GITHUB_SHA not set")
     }
 
     const [ cmd, ...args ] = [
@@ -4121,7 +4131,7 @@ const {env} = __nccwpck_require__(282);
     ]
 
     core.info(`Running command: ${cmd} ${args.join(' ')}`)
-    await exec.exec(cmd, args);
+    await exec.exec(cmd, args)
 })();
 
 })();

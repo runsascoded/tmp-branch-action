@@ -4108,14 +4108,16 @@ const external_process_namespaceObject = require("process");
 
 
 (async () => {
-    const core = __nccwpck_require__(186);
-    const exec = __nccwpck_require__(514);
+    const core = __nccwpck_require__(186)
+    const exec = __nccwpck_require__(514)
 
-    const branch = core.getInput("branch");
-    const repository = core.getInput("repository") || external_process_namespaceObject.env.GITHUB_REPOSITORY;
+    const branch = core.getInput("branch")
+    const repository = core.getInput("repository") || external_process_namespaceObject.env.GITHUB_REPOSITORY
     if (!repository) {
-        core.setFailed("`repository` input not specified, $GITHUB_REPOSITORY not set");
+        core.setFailed("`repository` input not specified, $GITHUB_REPOSITORY not set")
     }
+
+    const keep = core.getInput("keep")
 
     const [ cmd, ...args ] = [
         `gh`, `api`,
@@ -4123,8 +4125,12 @@ const external_process_namespaceObject = require("process");
         `/repos/${repository}/git/refs/heads/${branch}`,
     ]
 
-    core.info(`Running command: ${cmd} ${args.join(' ')}`)
-    await exec.exec(cmd, args);
+    if (keep) {
+        core.info(`"keep" set, skipping command: ${cmd} ${args.join(' ')}`)
+    } else {
+        core.info(`Running command: ${cmd} ${args.join(' ')}`)
+        await exec.exec(cmd, args)
+    }
 })();
 
 })();

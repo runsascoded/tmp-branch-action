@@ -1,18 +1,18 @@
-const core = require("@actions/core");
-const {env} = require("process");
-(async () => {
-    const core = require("@actions/core");
-    const exec = require("@actions/exec");
+import {env} from "process"
 
-    const branch = core.getInput("branch");
-    const repository = core.getInput("repository") || env.GITHUB_REPOSITORY;
-    const sha = core.getInput("sha") || env.GITHUB_SHA;
+(async () => {
+    const core = require("@actions/core")
+    const exec = require("@actions/exec")
+
+    const branch = core.getInput("branch")
+    const repository = core.getInput("repository") || env.GITHUB_REPOSITORY
+    const sha = core.getInput("sha") || env.GITHUB_SHA
 
     if (!repository) {
-        core.setFailed("`repository` input not specified, $GITHUB_REPOSITORY not set");
+        core.setFailed("`repository` input not specified, $GITHUB_REPOSITORY not set")
     }
     if (!sha) {
-        core.setFailed("`sha` input not specified, $GITHUB_SHA not set");
+        core.setFailed("`sha` input not specified, $GITHUB_SHA not set")
     }
 
     const [ cmd, ...args ] = [
@@ -24,5 +24,5 @@ const {env} = require("process");
     ]
 
     core.info(`Running command: ${cmd} ${args.join(' ')}`)
-    await exec.exec(cmd, args);
+    await exec.exec(cmd, args)
 })();

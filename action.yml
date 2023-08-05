@@ -8,6 +8,8 @@ inputs:
     description: "Repository to create the branch on, defaults to $GITHUB_REPOSITORY"
   sha:
     description: "SHA to create the branch at, defaults to $GITHUB_SHA"
+  keep:
+    description: "Set to a truthy value to keep the branch after the \"post\" step"
 runs:
   using: node16
   main: dist/main/index.js
