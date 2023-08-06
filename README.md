@@ -12,3 +12,5 @@ steps:
       sha: ${{ env.init }}
 ```
 ([from runsascoded/update-submodules](https://github.com/runsascoded/update-submodules/blob/main/.github/workflows/test.yml#L28-L32))
+
+See also [tmp-branch-action](https://github.com/marketplace/actions/tmp-branch-action) on the Actions marketplace.
